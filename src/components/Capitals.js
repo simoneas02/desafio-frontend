@@ -29,13 +29,13 @@ class Capitals extends Component {
       return(
         <section className='section'>
           <h2 className='section__title'>Capitais</h2>
-          <div className='section__content__title'>
-            <div className='x'>
-              <span className='section__content__min-max'>Min</span><span className='section__content__min-max'>Máx</span>
+          <div className='section__temp'>
+            <div className='section__temp__title'>
+              <span className='section__temp__min-max'>Min</span><span className='section__temp__min-max'>Máx</span>
             </div>
 
-            <div className='x'>
-              <span className='section__content__min-max'>Min</span><span className='section__content__min-max'>Máx</span>
+            <div className='section__temp__title'>
+              <span className='section__temp__min-max'>Min</span><span className='section__temp__min-max'>Máx</span>
             </div>
           </div>
 
