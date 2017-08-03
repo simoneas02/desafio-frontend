@@ -3,9 +3,6 @@ import React, { Component } from 'react'
 class Capitals extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      capitals: []
-    }
   }
 
   render() {

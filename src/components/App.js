@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import ajax from '@fdaciuk/ajax'
 import Capitals from './Capitals'
+import Forecast from './Forecast'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      capitals: []
+      capitals: [],
+      forecast: [],
+      forecastWeek: []
     }
   }
 
@@ -19,18 +22,63 @@ class App extends Component {
 
     ajax().get(url)
       .then((response) => {
-        const query = response.query.results.channel;
+        const query = response.query.results.channel
 
-        const c = query.map((q) => {
+        const capitals = query.map((q) => {
           return({
-          capital: q.location.city,
-          min: q.item.forecast[0].low,
-          max: q.item.forecast[0].high
+            capital: q.location.city,
+            min: q.item.forecast[0].low,
+            max: q.item.forecast[0].high
           })
         })
 
-        this.setState({ capitals: c })
+        this.setState({ capitals: capitals })
       })
+  }
+
+  searchForecast() {
+    const city = this.refs.text.value
+    const url = `http://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where u="c" and woeid in (select woeid from geo.places(1) where text="${city}")&format=json`
+
+    ajax().get(url)
+      .then((response) => {
+
+          const query = response.query.results.channel
+          const week = response.query.results.channel.item.forecast
+
+          const forecast = {
+              city: query.location.city,
+              region: query.location.region,
+              country: query.location.country,
+              temp: query.item.condition.temp,
+              tempUnit: query.units.temperature,
+              text: query.item.condition.text,
+              high: query.item.forecast[0].high,
+              low: query.item.forecast[0].low,
+              sunset: query.astronomy.sunset,
+              speed: query.wind.speed,
+              speedUnit: query.units.speed,
+              humidity: query.atmosphere.humidity
+              }
+
+          const forecastWeek = week.filter((d, i) => {
+            const index = i >= 1 && i <= 5
+            console.log(index)
+            if(index) {
+              return({
+                day: d.day,
+                low: d.low,
+                high: d.high
+              })
+            } 
+          })
+
+          this.setState({ forecast: forecast })
+          this.setState({ forecastWeek: forecastWeek })
+      })
+      .catch(() => {
+        console.log('ssssd')}
+      )
   }
 
   render() {
@@ -41,93 +89,12 @@ class App extends Component {
         <header className='header'>
           <h1 className='header__title'>Previsão do Tempo</h1>
 
-          <div className='forecast'>
-            <header className='forecast__header'>
-              <h4 className='forecast__header__city'>Niterói, RJ - Brasil</h4>
-              <button className='forecast__header__btn'></button>
-            </header>
-
-            <main className='main'>
-              <h3 className='main__temperature'> 20ºC Nublado</h3>
-
-              <div className='info'>
-                <div className='info__condition'>
-                  <div className='info__condition__min-max'>
-                    <img src="/assets/icon/arrow-up.svg" alt="arrow up"/>
-                    <span>16ºC</span>
-                  </div>
-
-                  <div className='info__condition__min-max'>
-                    <img src="/assets/icon/arrow-down.svg" alt="arrow down"/>
-                    <span>25ºC</span>
-                  </div>
-                </div>
-
-                <div className='info__condition'>
-                  <span className='info__condition__name'>Sensação</span>
-                  <span className='info__condition__number'>19ºC</span>
-                </div>
-              </div>
-
-              <div className='info'>
-                <div className='info__condition'>
-                  <span className='info__condition__name'>Vento</span>
-                  <span className='info__condition__number'>18km/h</span>
-                </div>
-
-                <div className='info__condition'>
-                  <span className='info__condition__name'>Humidade</span>
-                  <span className='info__condition__number'>89%</span>
-                </div>
-              </div>
-            </main>
-
-            <footer className='footer'>
-              <div className='weather'>
-                <div className='weather__day'>Terça</div>
-                <div className='weather__condition'>
-                  <span className='weather__condition__min-max'>18º</span>
-                  <span className='weather__condition__min-max'>26º</span>
-                </div>
-              </div>
-
-              <div className='weather'>
-                <div className='weather__day'>Terça</div>
-                <div className='weather__condition'>
-                  <span className='weather__condition__min-max'>18º</span>
-                  <span className='weather__condition__min-max'>26º</span>
-                </div>
-              </div>
-
-              <div className='weather'>
-                <div className='weather__day'>Terça</div>
-                <div className='weather__condition'>
-                  <span className='weather__condition__min-max'>18º</span>
-                  <span className='weather__condition__min-max'>26º</span>
-                </div>
-              </div>
-
-              <div className='weather'>
-                <div className='weather__day'>Terça</div>
-                <div className='weather__condition'>
-                  <span className='weather__condition__min-max'>18º</span>
-                  <span className='weather__condition__min-max'>26º</span>
-                </div>
-              </div>
-
-              <div className='weather'>
-                <div className='weather__day'>Terça</div>
-                <div className='weather__condition'>
-                  <span className='weather__condition__min-max'>18º</span>
-                  <span className='weather__condition__min-max'>26º</span>
-                </div>
-              </div>
-            </footer>
-          </div>
+          <Forecast forecast= { this.state.forecast }
+                    forecastWeek={ this.state.forecastWeek } />
 
           <div className="search">
-            <input className='search__input' type='search' placeholder='Insira aqui o nome da cidade' />
-            <button className="search__button"> </button>
+            <input className='search__input' ref='text' type='search' placeholder='Insira aqui o nome da cidade' />
+            <button className="search__button" ref='btnSearch' onClick= { this.searchForecast.bind(this) }></button>
           </div>
         </header>
 

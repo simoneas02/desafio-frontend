@@ -56,6 +56,55 @@ body {
   height: 40px;
   border: none;
 }
+.section {
+  max-width: 400px;
+  width: 100%;
+  margin-top: 30px;
+  border-top: 1px solid #ffb900;
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+}
+.section__title {
+  margin: 5px 0;
+  max-width: 320px;
+  width: 100%;
+}
+.section__content {
+  max-width: 320px;
+  width: 100%;
+  columns: 150px 2;
+  column-gap: 0;
+}
+.section__temp {
+  max-width: 320px;
+  width: 100%;
+  display: flex;
+}
+.section__temp__title {
+  max-width: 160px;
+  width: 100%;
+}
+.section__temp__min-max {
+  max-width: 80px;
+  width: 100%;
+  padding: 10px 5px 10px 0;
+  color: #8c6211;
+  font-size: 10px;
+}
+.section__content__details {
+  color: #302b20;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 10px 0;
+  height: 40px;
+}
+.section__content__details__weather {
+  padding: 10px 5px 10px 0;
+}
+.section__content__details__where {
+  padding: 10px 0 10px 5px;
+}
 .forecast {
   max-width: 350px;
   width: 100%;
@@ -165,53 +214,4 @@ body {
   padding-right: 3px;
   max-width: 50px;
   width: 100%;
-}
-.section {
-  max-width: 400px;
-  width: 100%;
-  margin-top: 30px;
-  border-top: 1px solid #ffb900;
-  display: flex;
-  flex-direction: column;
-  padding-left: 50px;
-}
-.section__title {
-  margin: 5px 0;
-  max-width: 320px;
-  width: 100%;
-}
-.section__content {
-  max-width: 320px;
-  width: 100%;
-  columns: 150px 2;
-  column-gap: 0;
-}
-.section__temp {
-  max-width: 320px;
-  width: 100%;
-  display: flex;
-}
-.section__temp__title {
-  max-width: 160px;
-  width: 100%;
-}
-.section__temp__min-max {
-  max-width: 80px;
-  width: 100%;
-  padding: 10px 5px 10px 0;
-  color: #8c6211;
-  font-size: 10px;
-}
-.section__content__details {
-  color: #302b20;
-  font-weight: 700;
-  font-size: 12px;
-  padding: 10px 0;
-  height: 40px;
-}
-.section__content__details__weather {
-  padding: 10px 5px 10px 0;
-}
-.section__content__details__where {
-  padding: 10px 0 10px 5px;
 }
