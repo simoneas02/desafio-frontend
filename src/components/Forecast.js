@@ -5,6 +5,19 @@ class Forecast extends Component {
     super(props)
   }
 
+   componentWillReceiveProps(nextProps) {
+    const forecast = this.refs.forecast
+
+    if(nextProps.visible) {
+      forecast.classList.remove('forecast--hide')
+    }
+  }
+
+  hideForecast() {
+    const forecast = this.refs.forecast
+    forecast.classList.add('forecast--hide')
+  }
+
   render() {
     const forecast = this.props.forecast
     
@@ -21,10 +34,10 @@ class Forecast extends Component {
     })
 
     return(
-        <div className='forecast'>
+        <div className='forecast forecast--hide' ref='forecast'>
             <header className='forecast__header'>
               <h4 className='forecast__header__city'>{`${forecast.city}, ${forecast.region} - ${forecast.country}`}</h4>
-              <button className='forecast__header__btn'></button>
+              <button className='forecast__header__btn' onClick= { this.hideForecast.bind(this) }></button>
             </header>
 
             <main className='main'>

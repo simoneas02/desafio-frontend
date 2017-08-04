@@ -3,22 +3,29 @@
 }
 body,
 html {
-  height: 100%;
+  min-height: 100vh;
   background: linear-gradient(to bottom, #ff7f00, #ffb900);
 }
 body {
   font-family: 'Roboto', sans-serif;
+  font-size: 12px;
 }
 .container {
   max-width: 700px;
   width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 40px auto 0 auto;
-  height: 100%;
+  margin: 0 auto;
   color: #fff2e4;
+  padding-top: 100px;
+}
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    padding-top: 10px;
+  }
 }
 .header {
   max-width: 700px;
@@ -29,8 +36,20 @@ body {
   justify-content: center;
 }
 .header__title {
-  font-size: 2.3em;
+  font-size: 3rem;
   margin: 0 20px 30px 20px;
+}
+@media (max-width: 480px) {
+  .header__title {
+    max-width: 320px;
+    font-size: 3.5rem;
+    margin: 10px;
+  }
+}
+.header__title--forecast {
+  max-width: 400px;
+  font-size: 2rem;
+  margin: 10px auto 10px 20px;
 }
 .search {
   max-width: 700px;
@@ -39,12 +58,18 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media (max-width: 480px) {
+  .search {
+    max-width: 400px;
+    margin: 20px 0;
+  }
+}
 .search__input {
   max-width: 300px;
   width: 100%;
   height: 40px;
   color: #8c6211;
-  font-size: 16px;
+  font-size: 1.2rem;
   padding-left: 10px;
   font-family: 'Roboto', sans-serif;
   border: none;
@@ -65,16 +90,33 @@ body {
   flex-direction: column;
   padding-left: 50px;
 }
+@media (max-width: 480px) {
+  .section {
+    padding: 10px 0 10px 40px;
+  }
+}
 .section__title {
   margin: 5px 0;
   max-width: 320px;
   width: 100%;
+  font-size: 2rem;
+}
+@media (max-width: 480px) {
+  .section__title {
+    font-size: 2.5rem;
+    padding: 5px 0;
+  }
 }
 .section__content {
   max-width: 320px;
   width: 100%;
   columns: 150px 2;
   column-gap: 0;
+}
+@media (max-width: 480px) {
+  .section__content {
+    columns: 350px 1;
+  }
 }
 .section__temp {
   max-width: 320px;
@@ -85,19 +127,34 @@ body {
   max-width: 160px;
   width: 100%;
 }
+@media (max-width: 480px) {
+  .section__temp__title--hide {
+    display: none;
+  }
+}
 .section__temp__min-max {
   max-width: 80px;
   width: 100%;
   padding: 10px 5px 10px 0;
   color: #8c6211;
-  font-size: 10px;
+  font-size: 0.6rem;
+}
+@media (max-width: 480px) {
+  .section__temp__min-max {
+    font-size: 0.8rem;
+  }
 }
 .section__content__details {
   color: #302b20;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 0.8rem;
   padding: 10px 0;
   height: 40px;
+}
+@media (max-width: 480px) {
+  .section__content__details {
+    font-size: 1rem;
+  }
 }
 .section__content__details__weather {
   padding: 10px 5px 10px 0;
@@ -116,6 +173,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media (max-width: 480px) {
+  .forecast {
+    max-width: 100%;
+  }
+}
+.forecast--hide {
+  display: none;
+}
 .forecast__header {
   display: flex;
   max-width: 350px;
@@ -123,16 +188,27 @@ body {
   padding-left: 30px;
   margin: 5px 0 auto 0;
 }
+@media (max-width: 480px) {
+  .forecast__header {
+    max-width: 400px;
+  }
+}
 .forecast__header__city {
-  font-size: 12px;
+  font-size: 0.8rem;
   margin: 0;
-  padding: 5px 0;
+  padding: 10px 0;
+}
+@media (max-width: 480px) {
+  .forecast__header__city {
+    font-size: 1rem;
+  }
 }
 .forecast__header__btn {
   border: none;
   width: 30px;
   margin: 3px 3px 3px auto;
   background: url("/assets/icon/close.svg") center no-repeat;
+  cursor: pointer;
 }
 .main {
   display: flex;
@@ -140,24 +216,44 @@ body {
   flex: 1;
   max-width: 330px;
   width: 100%;
-  padding: 10px 5px;
   border-bottom: 1px solid #ff7f00;
-  padding-left: 20px;
+  padding: 0 0 10px 20px;
+}
+@media (max-width: 480px) {
+  .main {
+    max-width: 400px;
+  }
 }
 .temperature {
-  margin: 10px 0;
-  font-size: 28px;
+  margin: 5px 0;
+  font-size: 2rem;
   font-weight: 700;
   display: flex;
   align-items: baseline;
+}
+@media (max-width: 480px) {
+  .temperature {
+    max-width: 100%;
+    font-size: 2.5rem;
+  }
 }
 .temperature__min {
   max-width: 80px;
   width: 100%;
 }
+@media (max-width: 480px) {
+  .temperature__min {
+    max-width: 100px;
+  }
+}
 .temperature__condition {
   max-width: 200px;
   width: 100%;
+}
+@media (max-width: 480px) {
+  .temperature__condition {
+    max-width: 250px;
+  }
 }
 .info {
   display: flex;
@@ -165,27 +261,57 @@ body {
   width: 100%;
   padding: 5px 0;
 }
+@media (max-width: 480px) {
+  .info {
+    max-width: 100%;
+  }
+}
 .info__condition {
   max-width: 100px;
   width: 100%;
   display: flex;
 }
+@media (max-width: 480px) {
+  .info__condition {
+    max-width: 150px;
+    display: flex;
+    align-items: center;
+  }
+}
 .info__condition__min-max {
   color: #505050;
-  font-size: 12px;
+  font-size: 0.7rem;
   font-weight: 700;
-  max-width: 40px;
+  max-width: 45px;
   width: 100%;
+  padding-right: 2px;
+}
+@media (max-width: 480px) {
+  .info__condition__min-max {
+    font-size: 1rem;
+    max-width: 60px;
+  }
 }
 .info__condition__name {
   color: #a9a4a4;
-  font-size: 11px;
+  font-size: 0.6rem;
+}
+@media (max-width: 480px) {
+  .info__condition__name {
+    font-size: 0.8rem;
+  }
 }
 .info__condition__number {
   color: #505050;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 0.7rem;
   padding-left: 5px;
+}
+@media (max-width: 480px) {
+  .info__condition__number {
+    font-size: 1rem;
+    max-width: 100px;
+  }
 }
 .footer {
   display: flex;
@@ -193,6 +319,12 @@ body {
   max-width: 300px;
   width: 100%;
   padding-top: 5px;
+  margin: 5px 0;
+}
+@media (max-width: 480px) {
+  .footer {
+    max-width: 380px;
+  }
 }
 .weather {
   padding: 5px;
@@ -202,11 +334,16 @@ body {
   justify-content: center;
 }
 .weather__day {
-  font-size: 12px;
+  font-size: 0.8rem;
   color: #505050;
   font-weight: 700;
   max-width: 50px;
   width: 100%;
+}
+@media (max-width: 480px) {
+  .weather__day {
+    font-size: 1rem;
+  }
 }
 .weather__condition {
   display: flex;
@@ -215,9 +352,14 @@ body {
 }
 .weather__condition__min-max {
   color: #ff7f00;
-  font-size: 10px;
+  font-size: 0.7rem;
   font-weight: 700;
   padding-right: 3px;
   max-width: 50px;
   width: 100%;
+}
+@media (max-width: 480px) {
+  .weather__condition__min-max {
+    font-size: 1rem;
+  }
 }

@@ -31,7 +31,7 @@ class Capitals extends Component {
               <span className='section__temp__min-max'>Min</span><span className='section__temp__min-max'>Máx</span>
             </div>
 
-            <div className='section__temp__title'>
+            <div className='section__temp__title section__temp__title--hide'>
               <span className='section__temp__min-max'>Min</span><span className='section__temp__min-max'>Máx</span>
             </div>
           </div>

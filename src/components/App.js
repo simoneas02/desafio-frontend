@@ -10,12 +10,17 @@ class App extends Component {
     this.state = {
       capitals: [],
       forecast: [],
-      forecastWeek: []
+      forecastWeek: [],
+      visible: false
     }
   }
 
   componentDidMount() {
     this.listData()
+  }
+
+  componentDidUpdate() {
+    this.formteTitle()
   }
 
   listData() {
@@ -38,7 +43,7 @@ class App extends Component {
   }
 
   searchForecast() {
-    const city = this.refs.text.value
+    let city = this.refs.text.value
     const url = `http://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where u="c" and woeid in (select woeid from geo.places(1) where text="${city}")&format=json`
 
     ajax().get(url)
@@ -63,7 +68,6 @@ class App extends Component {
               humidity: query.atmosphere.humidity
               }
 
-              console.log(translateConditions(query.item.condition.code))
           const forecastWeek = week.filter((d, i) => (i >= 1 && i <= 5)).map((d) => {
 
               return({
@@ -74,12 +78,26 @@ class App extends Component {
 
           })
 
+          this.setState({ visible: true })
           this.setState({ forecast: forecast })
           this.setState({ forecastWeek: forecastWeek })
+          this.refs.text.value = ''
       })
-      .catch(() => {
-        console.log('ssssd')}
+      .catch((Error) => {
+        console.log(Error)}
       )
+
+  }
+
+  formteTitle() {
+    const title = this.refs.title
+    const visible = this.state.visible
+
+    if(visible) {
+      title.classList.add('header__title--forecast')
+    } else {
+      title.classList.remove('header__title--forecast')
+    }
   }
 
   render() {
@@ -88,10 +106,11 @@ class App extends Component {
       <div className='container'>
         
         <header className='header'>
-          <h1 className='header__title'>Previsão do Tempo</h1>
+          <h1 className='header__title' ref='title'>Previsão do Tempo</h1>
 
           <Forecast forecast= { this.state.forecast }
-                    forecastWeek={ this.state.forecastWeek } />
+                    forecastWeek= { this.state.forecastWeek }
+                    visible= { this.state.visible } />
 
           <div className="search">
             <input className='search__input' ref='text' type='search' placeholder='Insira aqui o nome da cidade' />
@@ -100,6 +119,7 @@ class App extends Component {
         </header>
 
         <Capitals capitals= { this.state.capitals }/>
+
       </div>
     );
   }

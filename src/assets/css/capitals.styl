@@ -8,16 +8,30 @@
     flex-direction column
     padding-left 50px
 
+@media(max-width: 480px)
+    .section
+        padding 10px 0 10px 40px
+
 .section__title
     margin 5px 0
     max-width 320px
     width 100%
+    font-size 2rem
+
+@media(max-width: 480px)
+    .section__title
+        font-size 2.5rem
+        padding 5px 0
 
 .section__content
     max-width 320px
     width 100%
     columns 150px 2
     column-gap 0
+
+@media(max-width: 480px)
+    .section__content
+        columns 350px 1
 
 .section__temp
     max-width 320px
@@ -28,22 +42,36 @@
     max-width 160px
     width 100%
 
+@media(max-width: 480px)
+    .section__temp__title--hide
+        display none
+
 .section__temp__min-max
     max-width 80px
     width 100%
     padding 10px 5px 10px 0
     color #8c6211
-    font-size 10px
+    font-size .6rem
+
+@media(max-width: 480px)
+    .section__temp__min-max
+        font-size .8rem
 
 .section__content__details
     color #302b20
     font-weight 700
-    font-size 12px
+    font-size .8rem
     padding 10px 0
     height 40px
+
+@media(max-width: 480px)
+    .section__content__details
+        font-size 1rem
 
 .section__content__details__weather
     padding 10px 5px 10px 0
 
 .section__content__details__where
     padding 10px 0 10px 5px
+
+

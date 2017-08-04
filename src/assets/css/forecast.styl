@@ -9,6 +9,13 @@
     align-items center
     justify-content center
 
+@media(max-width: 480px)
+    .forecast
+        max-width 100%
+
+.forecast--hide
+    display none
+
 .forecast__header
     display flex
     max-width 350px
@@ -16,16 +23,25 @@
     padding-left 30px
     margin 5px 0 auto 0
 
+@media(max-width: 480px)
+    .forecast__header
+        max-width 400px
+
 .forecast__header__city
-    font-size 12px
+    font-size .8rem
     margin 0
-    padding 5px 0
+    padding 10px 0
+
+@media(max-width: 480px)
+    .forecast__header__city
+        font-size 1rem
 
 .forecast__header__btn
     border none
     width 30px
     margin 3px 3px 3px auto
     background url("/assets/icon/close.svg") center no-repeat
+    cursor pointer
 
 .main
     display flex
@@ -33,24 +49,40 @@
     flex 1
     max-width 330px
     width 100%
-    padding 10px 5px
     border-bottom 1px solid primary-color
-    padding-left 20px
+    padding 0 0 10px 20px
+
+@media(max-width: 480px)
+    .main
+        max-width 400px
 
 .temperature
-    margin 10px 0
-    font-size 28px
+    margin 5px 0
+    font-size 2rem
     font-weight 700
     display flex
     align-items baseline
+
+@media(max-width: 480px)
+    .temperature
+        max-width 100%
+        font-size 2.5rem
 
 .temperature__min
     max-width 80px
     width 100%
 
+@media(max-width: 480px)
+    .temperature__min
+        max-width 100px
+
 .temperature__condition
     max-width 200px
     width 100%
+
+@media(max-width: 480px)
+    .temperature__condition
+        max-width 250px
 
 .info
     display flex
@@ -58,27 +90,52 @@
     width 100%
     padding 5px 0
 
+@media(max-width: 480px)
+    .info
+        max-width 100%
+
 .info__condition
     max-width 100px
     width 100%
     display flex
 
+@media(max-width: 480px)
+    .info__condition
+        max-width 150px
+        display flex
+        align-items center
+
 .info__condition__min-max
     color dark-text-color
-    font-size 12px
+    font-size .7rem
     font-weight 700
-    max-width 40px
+    max-width 45px
     width 100%
+    padding-right 2px
+
+@media(max-width: 480px)
+    .info__condition__min-max
+        font-size 1rem
+        max-width 60px
 
 .info__condition__name
     color #a9a4a4
-    font-size 11px
+    font-size .6rem
+
+@media(max-width: 480px)
+    .info__condition__name
+        font-size .8rem
 
 .info__condition__number
     color dark-text-color
     font-weight 700
-    font-size 12px
+    font-size .7rem
     padding-left 5px
+
+@media(max-width: 480px)
+    .info__condition__number
+        font-size 1rem
+        max-width 100px
 
 .footer
     display flex
@@ -86,6 +143,11 @@
     max-width 300px
     width 100%
     padding-top 5px
+    margin 5px 0
+
+@media(max-width: 480px)
+    .footer
+        max-width 380px
 
 .weather
     padding 5px
@@ -95,11 +157,15 @@
     justify-content center
 
 .weather__day
-    font-size 12px
+    font-size .8rem
     color dark-text-color
     font-weight 700
     max-width 50px
     width 100%
+
+@media(max-width: 480px)
+    .weather__day
+        font-size 1rem
 
 .weather__condition
     display flex
@@ -108,8 +174,12 @@
 
 .weather__condition__min-max
     color primary-color
-    font-size 10px
+    font-size .7rem
     font-weight 700
     padding-right 3px
     max-width 50px
     width 100%
+
+@media(max-width: 480px)
+    .weather__condition__min-max
+        font-size 1rem
