@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ajax from '@fdaciuk/ajax'
 import Capitals from './Capitals'
 import Forecast from './Forecast'
+import { translateWeek, translateConditions } from './utils'
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
               country: query.location.country,
               temp: query.item.condition.temp,
               tempUnit: query.units.temperature,
+              code: translateConditions(query.item.condition.code),
               text: query.item.condition.text,
               high: query.item.forecast[0].high,
               low: query.item.forecast[0].low,
@@ -61,16 +63,15 @@ class App extends Component {
               humidity: query.atmosphere.humidity
               }
 
-          const forecastWeek = week.filter((d, i) => {
-            const index = i >= 1 && i <= 5
-            console.log(index)
-            if(index) {
+              console.log(translateConditions(query.item.condition.code))
+          const forecastWeek = week.filter((d, i) => (i >= 1 && i <= 5)).map((d) => {
+
               return({
-                day: d.day,
+                day: translateWeek(d.day),
                 low: d.low,
                 high: d.high
               })
-            } 
+
           })
 
           this.setState({ forecast: forecast })

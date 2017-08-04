@@ -108,7 +108,6 @@ body {
 .forecast {
   max-width: 350px;
   width: 100%;
-  height: 200px;
   margin-bottom: 10px;
   background: #fff2e4;
   color: #505050;
@@ -122,16 +121,16 @@ body {
   max-width: 350px;
   width: 100%;
   padding-left: 30px;
-  height: 30px;
   margin: 5px 0 auto 0;
 }
 .forecast__header__city {
   font-size: 12px;
+  margin: 0;
+  padding: 5px 0;
 }
 .forecast__header__btn {
   border: none;
   width: 30px;
-  height: 30px;
   margin: 3px 3px 3px auto;
   background: url("/assets/icon/close.svg") center no-repeat;
 }
@@ -145,18 +144,26 @@ body {
   border-bottom: 1px solid #ff7f00;
   padding-left: 20px;
 }
-.main__temperature {
-  margin: 0;
-  height: 70px;
+.temperature {
+  margin: 10px 0;
   font-size: 28px;
+  font-weight: 700;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+}
+.temperature__min {
+  max-width: 80px;
+  width: 100%;
+}
+.temperature__condition {
+  max-width: 200px;
+  width: 100%;
 }
 .info {
   display: flex;
   max-width: 300px;
   width: 100%;
-  height: 30px;
+  padding: 5px 0;
 }
 .info__condition {
   max-width: 100px;
@@ -202,7 +209,6 @@ body {
   width: 100%;
 }
 .weather__condition {
-  height: 13px;
   display: flex;
   align-items: center;
   margin: 5px 0;

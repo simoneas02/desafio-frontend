@@ -8,9 +8,9 @@ class Forecast extends Component {
   render() {
     const forecast = this.props.forecast
     
-    const day = this.props.forecastWeek.map((d) => {
+    const day = this.props.forecastWeek.map((d, index) => {
       return(
-        <div className='weather'>
+        <div key={index} className='weather'>
           <div className='weather__day'>{d.day}</div>
           <div className='weather__condition'>
             <span className='weather__condition__min-max'>{d.high}º</span>
@@ -28,7 +28,10 @@ class Forecast extends Component {
             </header>
 
             <main className='main'>
-              <h3 className='main__temperature'>{`${forecast.temp}º${forecast.tempUnit}  ${forecast.text}`}</h3>
+              <div className='temperature'>
+                <span className='temperature__min'>{forecast.temp}º{forecast.tempUnit}</span>
+                <span className='temperature__condition'>{forecast.code}</span>
+              </div>
 
               <div className='info'>
                 <div className='info__condition'>
