@@ -46,29 +46,34 @@ class App extends Component {
     let city = this.refs.text.value
     const url = `http://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where u="c" and woeid in (select woeid from geo.places(1) where text="${city}")&format=json`
 
-    ajax().get(url)
-      .then((response) => {
+    if(this.refs.text.value) {
+      this.refs.erroAPI.classList.add('search__erro--hide')
+      this.refs.erro.classList.add('search__erro--hide')
 
-          const query = response.query.results.channel
-          const week = response.query.results.channel.item.forecast
+      ajax().get(url)
+        .then((response) => {
 
-          const forecast = {
-              city: query.location.city,
-              region: query.location.region,
-              country: query.location.country,
-              temp: query.item.condition.temp,
-              tempUnit: query.units.temperature,
-              code: translateConditions(query.item.condition.code),
-              text: query.item.condition.text,
-              high: query.item.forecast[0].high,
-              low: query.item.forecast[0].low,
-              sunset: query.astronomy.sunset,
-              speed: query.wind.speed,
-              speedUnit: query.units.speed,
-              humidity: query.atmosphere.humidity
-              }
+          if(response.query.results) {
+            const query = response.query.results.channel
+            const week = response.query.results.channel.item.forecast
 
-          const forecastWeek = week.filter((d, i) => (i >= 1 && i <= 5)).map((d) => {
+            const forecast = {
+                city: query.location.city,
+                region: query.location.region,
+                country: query.location.country,
+                temp: query.item.condition.temp,
+                tempUnit: query.units.temperature,
+                code: translateConditions(query.item.condition.code),
+                text: query.item.condition.text,
+                high: query.item.forecast[0].high,
+                low: query.item.forecast[0].low,
+                sunset: query.astronomy.sunset,
+                speed: query.wind.speed,
+                speedUnit: query.units.speed,
+                humidity: query.atmosphere.humidity
+                }
+
+            const forecastWeek = week.filter((d, i) => (i >= 1 && i <= 5)).map((d) => {
 
               return({
                 day: translateWeek(d.day),
@@ -76,16 +81,27 @@ class App extends Component {
                 high: d.high
               })
 
-          })
+            })
 
-          this.setState({ visible: true })
-          this.setState({ forecast: forecast })
-          this.setState({ forecastWeek: forecastWeek })
-          this.refs.text.value = ''
-      })
-      .catch((Error) => {
-        console.log(Error)}
-      )
+            this.setState({ visible: true })
+            this.setState({ forecast: forecast })
+            this.setState({ forecastWeek: forecastWeek })
+            this.refs.text.value = ''
+          } else {
+            this.refs.erroAPI.classList.remove('search__erro--hide')
+            this.refs.erro.classList.add('search__erro--hide')
+            this.refs.text.value = ''
+          }
+
+        })
+        .catch(function (response) {
+          this.refs.erroResp.classList.remove('search__erro--hide')
+        })
+    } else {
+      this.refs.erro.classList.remove('search__erro--hide')
+      this.refs.erroAPI.classList.add('search__erro--hide')
+      this.refs.text.value = ''
+    }
 
   }
 
@@ -116,6 +132,9 @@ class App extends Component {
             <input className='search__input' ref='text' type='search' placeholder='Insira aqui o nome da cidade' />
             <button className="search__button" ref='btnSearch' onClick= { this.searchForecast.bind(this) }></button>
           </div>
+          <span className="search__erro--hide search__erro" ref="erro">* O campo não pode ser vazio</span>
+          <span className="search__erro--hide search__erro" ref="erroAPI">* Informe um país ou cidade válido</span>
+          <span className="search__erro--hide search__erro" ref="erroResp">* A API não está respondendo corretamente</span>
         </header>
 
         <Capitals capitals= { this.state.capitals }/>
