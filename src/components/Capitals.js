@@ -10,7 +10,7 @@ class Capitals extends Component {
     const props = this.props.capitals
     
     if(props.length === 0) {
-      return <span>Loading...</span>
+      return <img src='/assets/icon/loading.svg'/>
     }
 
     const listCapital = props.map((city, index) => {
