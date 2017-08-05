@@ -3,22 +3,18 @@ import React, { Component } from 'react'
 class Forecast extends Component {
   constructor(props) {
     super(props)
-  }
-
-   componentWillReceiveProps(nextProps) {
-    const forecast = this.refs.forecast
-
-    if(nextProps.visible) {
-      forecast.classList.remove('forecast--hide')
     }
-  }
-
-  hideForecast() {
-    const forecast = this.refs.forecast
-    forecast.classList.add('forecast--hide')
-  }
 
   render() {
+    const visible = this.props.visible
+    let showForecast;
+
+    if(visible) {
+      showForecast = ''
+    } else {
+      showForecast = 'forecast--hide'
+    }
+
     const forecast = this.props.forecast
     
     const day = this.props.forecastWeek.map((d, index) => {
@@ -34,10 +30,10 @@ class Forecast extends Component {
     })
 
     return(
-        <div className='forecast forecast--hide' ref='forecast'>
+        <div className={`forecast ${showForecast}`} ref='forecast'>
             <header className='forecast__header'>
               <h4 className='forecast__header__city'>{`${forecast.city}, ${forecast.region} - ${forecast.country}`}</h4>
-              <button className='forecast__header__btn' onClick= { this.hideForecast.bind(this) }></button>
+              <button className='forecast__header__btn' onClick= { this.props.setVisible.bind(this) }></button>
             </header>
 
             <main className='main'>

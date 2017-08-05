@@ -26,12 +26,15 @@ body
     align-items center
     margin 0 auto
     color title-color
-    padding-top 100px
+    padding-top 80px
 
 @media(max-width: 480px)
     .container
         max-width 100%
-        padding-top 10px
+        padding-top 0
+
+.container--title--forecast
+    padding-top 0
 
 /* header */
 .header
@@ -53,9 +56,19 @@ body
         margin 10px
 
 .header__title--forecast
-    max-width: 400px
-    font-size: 2rem
-    margin: 10px auto 10px 20px
+        max-width 400px
+        font-size 2rem
+        margin 10px auto
+
+@media(max-width: 480px)
+    .header__title--forecast
+        margin 0
+        padding 10px
+        text-align left
+        max-width 480px
+        width 100%
+        box-shadow 0 3px 7px 0 rgba(0, 0, 0, .2)
+        z-index 1
 
 /* Search */
 .search
