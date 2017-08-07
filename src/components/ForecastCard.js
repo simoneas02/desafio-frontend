@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
+import {changeVisble} from '../actions'
 
-class Forecast extends Component {
+class ForecastCard extends Component {
   constructor(props) {
     super(props)
     }
 
   render() {
-    const visible = this.props.visible
+    // Show or hide forecast card
+    const visible = this.props.state.visible
     let showForecast;
-
     if(visible) {
       showForecast = ''
     } else {
       showForecast = 'forecast--hide'
     }
 
+    // Show forecast week
     const forecast = this.props.forecast
-    
     const day = this.props.forecastWeek.map((d, index) => {
       return(
         <div key={index} className='weather'>
@@ -33,7 +34,7 @@ class Forecast extends Component {
         <div className={`forecast ${showForecast}`} ref='forecast'>
             <header className='forecast__header'>
               <h4 className='forecast__header__city'>{`${forecast.city}, ${forecast.region} - ${forecast.country}`}</h4>
-              <button className='forecast__header__btn' onClick= { this.props.setVisible.bind(this) }></button>
+              <button className='forecast__header__btn' onClick = {() => changeVisble(false)}></button>
             </header>
 
             <main className='main'>
@@ -82,4 +83,4 @@ class Forecast extends Component {
   }
 }
 
-export default Forecast
+export default ForecastCard

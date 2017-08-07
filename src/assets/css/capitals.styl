@@ -23,16 +23,6 @@
         font-size 2.5rem
         padding 5px 0
 
-.section__content
-    max-width 320px
-    width 100%
-    columns 150px 2
-    column-gap 0
-
-@media(max-width: 480px)
-    .section__content
-        columns 350px 1
-
 .section__temp
     max-width 320px
     width 100%
@@ -43,7 +33,7 @@
     width 100%
 
 @media(max-width: 480px)
-    .section__temp__title--hide
+    .section__temp__title:nth-child(2)
         display none
 
 .section__temp__min-max
@@ -56,6 +46,16 @@
 @media(max-width: 480px)
     .section__temp__min-max
         font-size .8rem
+
+.section__content
+    max-width 320px
+    width 100%
+    columns 150px 2
+    column-gap 0
+
+@media(max-width: 480px)
+    .section__content
+        columns 350px 1
 
 .section__content__details
     color #302b20
