@@ -37,7 +37,7 @@ class ForecastCard extends Component {
               <button className='forecast__header__btn' onClick = {() => changeVisble(false)}></button>
             </header>
 
-            <main className='main'>
+            <main className='forecast-main'>
               <div className='temperature'>
                 <span className='temperature__min'>{forecast.temp}º{forecast.tempUnit}</span>
                 <span className='temperature__condition'>{forecast.code}</span>
@@ -75,7 +75,7 @@ class ForecastCard extends Component {
               </div>
             </main>
 
-            <footer className='footer'>
+            <footer className='forecast-footer'>
               { day }
             </footer>
           </div>

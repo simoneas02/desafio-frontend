@@ -15,7 +15,7 @@
     "stylus": "^0.54.5"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"stylus -w ./src/assets/css/main.styl -o ./public/main.css\"",
+    "start": "concurrently \"react-scripts start\" \"stylus -w ./src/assets/style/base.styl -o ./public/main.css\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

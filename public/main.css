@@ -11,7 +11,6 @@ body {
   font-size: 12px;
 }
 .container {
-  max-width: 700px;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -116,6 +115,14 @@ body {
   width: 50px;
   height: 40px;
   border: none;
+}
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: var(#ff7f00);
 }
 .section {
   max-width: 400px;
@@ -246,7 +253,7 @@ body {
   background: url("/assets/icon/close.svg") center no-repeat;
   cursor: pointer;
 }
-.main {
+.forecast-main {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -349,7 +356,7 @@ body {
     max-width: 100px;
   }
 }
-.footer {
+.forecast-footer {
   display: flex;
   justify-content: space-between;
   max-width: 300px;
@@ -397,5 +404,88 @@ body {
 @media (max-width: 480px) {
   .weather__condition__min-max {
     font-size: 1rem;
+  }
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #ff7f00;
+}
+.heart {
+  font-size: 12px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+@media (max-width: 560px) {
+  .heart {
+    height: 10%;
+  }
+}
+.heart__css {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  animation: pulse 0.5s infinite alternate ease-in;
+  background-color: #ffb900;
+}
+.heart__css:before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  content: "";
+  border-radius: 50%;
+  background-color: #ffb900;
+}
+.heart__css:after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  content: "";
+  border-radius: 50%;
+  background-color: #ffb900;
+}
+.heart__author {
+  text-decoration: none;
+  color: #505050;
+}
+@-moz-keyframes pulse {
+  from {
+    transform: rotate(-135deg) scale(1);
+  }
+  to {
+    transform: rotate(-135deg) scale(1.2);
+  }
+}
+@-webkit-keyframes pulse {
+  from {
+    transform: rotate(-135deg) scale(1);
+  }
+  to {
+    transform: rotate(-135deg) scale(1.2);
+  }
+}
+@-o-keyframes pulse {
+  from {
+    transform: rotate(-135deg) scale(1);
+  }
+  to {
+    transform: rotate(-135deg) scale(1.2);
+  }
+}
+@keyframes pulse {
+  from {
+    transform: rotate(-135deg) scale(1);
+  }
+  to {
+    transform: rotate(-135deg) scale(1.2);
   }
 }
